@@ -18,6 +18,12 @@
     --brand-deep: #2A3547;
     --gold: #C9A96E;
     --gold-light: #E8D5B0;
+
+    --header-height: 72px;
+    --hero-peek: 92px;
+    --hero-min: 560px;
+    --hero-max: 790px;
+    --vh: 1vh;
 }
 
 * {
@@ -188,11 +194,14 @@ body:not(.at-top) #landingHeader #landingHamburger span::after {
 /* ================= HERO ================= */
 .hero {
     position: relative;
-    height: 790px;
-    min-height: 790px;
-    max-height: 790px;
     overflow: hidden;
     background: #000;
+    height: clamp(var(--hero-min),
+            calc(100dvh - var(--header-height) - var(--hero-peek)),
+            var(--hero-max));
+    height: clamp(var(--hero-min),
+            calc((var(--vh) * 100) - var(--header-height) - var(--hero-peek)),
+            var(--hero-max));
 }
 
 .hero-slide {
@@ -1446,9 +1455,9 @@ body:not(.at-top) #landingHeader #landingHamburger span::after {
 /* ================= RESPONSIVE ================= */
 @media (max-width: 1024px) {
     .hero {
-        height: 600px;
-        min-height: 600px;
-        max-height: 600px;
+        --hero-peek: 78px;
+        --hero-min: 500px;
+        --hero-max: 680px;
     }
 
     .hero-title {
@@ -1515,9 +1524,10 @@ body:not(.at-top) #landingHeader #landingHamburger span::after {
     }
 
     .hero {
-        height: 520px;
-        min-height: 520px;
-        max-height: 520px;
+        --header-height: 64px;
+        --hero-peek: 56px;
+        --hero-min: 420px;
+        --hero-max: 560px;
     }
 
     .hero-inner {
