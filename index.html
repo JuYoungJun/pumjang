@@ -32,7 +32,7 @@
 
         <!-- ================= HERO ================= -->
         <section class="hero" aria-label="메인 배너">
-            <div class="hero-slide is-active" data-bg="hero-01.webp">
+            <div class="hero-slide" data-bg="hero-01.webp" data-pos="center center">
                 <div class="hero-overlay"></div>
                 <div class="hero-inner container">
                     <div class="hero-copy hero-copy--center">
@@ -49,7 +49,7 @@
                 </div>
             </div>
 
-            <div class="hero-slide" data-bg="hero-02.webp">
+            <div class="hero-slide" data-bg="hero-02.webp" data-pos="center 42%">
                 <div class="hero-overlay"></div>
                 <div class="hero-inner container">
                     <div class="hero-copy hero-copy--center">
@@ -66,7 +66,7 @@
                 </div>
             </div>
 
-            <div class="hero-slide" data-bg="hero-03.webp">
+            <div class="hero-slide is-active" data-bg="hero-03.webp" data-pos="center 38%">
                 <div class="hero-overlay"></div>
                 <div class="hero-inner container">
                     <div class="hero-copy hero-copy--center">
@@ -793,6 +793,21 @@
             await loadPartial("site-nav", "nav-landing.html");
             await loadPartial("site-footer", "footer.html");
 
+            const syncHeroViewport = () => {
+                const root = document.documentElement;
+                const headerEl = document.getElementById("landingHeader") || document.querySelector("#landingHeader .nav");
+                const headerHeight = headerEl ? Math.round(headerEl.offsetHeight) : 72;
+                const vh = window.innerHeight * 0.01;
+
+                root.style.setProperty("--vh", `${vh}px`);
+                root.style.setProperty("--header-height", `${headerHeight}px`);
+            };
+
+            syncHeroViewport();
+            window.addEventListener("resize", syncHeroViewport);
+            window.addEventListener("orientationchange", syncHeroViewport);
+            window.addEventListener("load", syncHeroViewport);
+
             const header = document.getElementById("landingHeader");
             const siteNav = document.getElementById("site-nav");
             const navMenu = document.getElementById("navMenu");
@@ -845,7 +860,9 @@
 
             slides.forEach((slide) => {
                 const file = slide.getAttribute("data-bg");
+                const pos = slide.getAttribute("data-pos") || "center center";
                 slide.style.backgroundImage = `url('${HERO_IMG_BASE}${file}')`;
+                slide.style.backgroundPosition = pos;
             });
 
             if (slides.length && dots.length) {
@@ -867,7 +884,7 @@
                     }, 3500);
                 };
 
-                showSlide(0);
+                showSlide(2);
                 startAuto();
 
                 dots.forEach((dot, i) => {
