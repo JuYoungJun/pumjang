@@ -2,6 +2,7 @@
   리뷰 JSON을 읽어서 렌더링
   - 갤러리형 / 목록형 토글
   - 상세보기: grid/list 모두 동일 모달
+  - 리뷰 필터링 강화 버전
 ========================================================= */
 
 const REVIEW_JSON_FILES = [
@@ -19,6 +20,38 @@ let REVIEWS = [];
 const PAGE_SIZE = 16;
 const PAGER_WINDOW = 5;
 const state = { page: 1, q: "", sort: "rating", view: "grid" };
+
+/* ✅ 리뷰 필터 설정 */
+const REVIEW_FILTER_CONFIG = {
+    minNormalizedLength: 8,
+    minVisibleLength: 6,
+    minSmartstoreRating: 4,
+    minKakaoRating: 4,
+
+    blockedExact: [
+        "ㅇ", "ㅇㅇ", "ㅇㅇㅇ",
+        "ㅎ", "ㅎㅎ", "ㅎㅎㅎ", "ㅋㅋ", "ㅋㅋㅋ",
+        "굿", "굿굿", "good", "goood",
+        "최고", "추천", "좋아요", "맛있어요",
+        "...", ".....", "......", "…"
+    ],
+
+    blockedContains: [
+        "답방", "소통", "맞팔", "선팔", "협찬", "광고",
+        "체험단", "이벤트 참여", "내돈내산 아님"
+    ],
+
+    negativeKeywords: [
+        "불친절", "별로", "최악", "다신", "다시는", "실망", "더럽",
+        "불편", "맛없", "비추천", "문제", "아쉽", "환불", "냄새",
+        "불만", "오래걸", "눈치", "불쾌", "안 좋", "비싸",
+        "별루", "추천하지 않", "재구매 안", "실수", "형편없",
+        "짜증", "기다렸", "늦게", "식었", "미지근", "질기",
+        "가시", "비린", "비림", "위생", "청결", "지저분",
+        "불만족", "엉망", "실망스", "개선", "나빴", "별 한개",
+        "최악이", "불친절하", "두번은", "다신 안", "재방문 안"
+    ]
+};
 
 /* DOM */
 function $(id) { return document.getElementById(id); }
@@ -55,13 +88,6 @@ function starsFor(rating) {
     return ("★".repeat(full) + "☆".repeat(empty)).slice(0, 5);
 }
 
-function isValidReview(r) {
-    if (!r) return false;
-    const c = String(r.content ?? "").trim();
-    if (c.length < 2) return false;
-    return true;
-}
-
 function resolveThumb(thumb) {
     const t = String(thumb ?? "").trim();
     return t || DEFAULT_THUMB || "";
@@ -88,9 +114,102 @@ function dateToNum(dateStr) {
     return y * 10000 + mo * 100 + d;
 }
 
+/* ✅ 필터링 유틸 */
+function normalizeText(text) {
+    return String(text || "")
+        .replace(/\s+/g, " ")
+        .replace(/[~!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?`…]/g, " ")
+        .trim();
+}
+
+function hasMeaningfulContent(text) {
+    const raw = String(text || "").trim();
+    const normalized = normalizeText(raw).toLowerCase();
+
+    if (!raw || !normalized) return false;
+
+    const { blockedExact, minNormalizedLength, minVisibleLength } = REVIEW_FILTER_CONFIG;
+
+    if (blockedExact.includes(raw.toLowerCase()) || blockedExact.includes(normalized)) {
+        return false;
+    }
+
+    if (raw.length < minVisibleLength) return false;
+    if (normalized.length < minNormalizedLength) return false;
+
+    const onlySimple = /^[ㄱ-ㅎㅏ-ㅣ가-힣a-z0-9]{1,6}$/i;
+    if (onlySimple.test(normalized)) return false;
+
+    return true;
+}
+
+function isNegativeReview(text) {
+    const normalized = normalizeText(text).toLowerCase();
+    return REVIEW_FILTER_CONFIG.negativeKeywords.some(keyword => normalized.includes(keyword));
+}
+
+function isBlockedPromoReview(text) {
+    const normalized = normalizeText(text).toLowerCase();
+    return REVIEW_FILTER_CONFIG.blockedContains.some(keyword => normalized.includes(keyword));
+}
+
+function buildReviewDedupeKey(r) {
+    const author = String(r.author || "익명").trim().toLowerCase();
+    const content = normalizeText(r.content || "").toLowerCase();
+    return `${author}|${content}`;
+}
+
+function reviewPassesFilter(r) {
+    if (!r) return false;
+
+    const content = String(r.content ?? "").trim();
+    if (!hasMeaningfulContent(content)) return false;
+    if (isNegativeReview(content)) return false;
+    if (isBlockedPromoReview(content)) return false;
+
+    if (r.source === "smartstore" && Number(r.rating || 0) < REVIEW_FILTER_CONFIG.minSmartstoreRating) {
+        return false;
+    }
+
+    if (r.source === "kakao_map" && Number(r.rating || 0) < REVIEW_FILTER_CONFIG.minKakaoRating) {
+        return false;
+    }
+
+    return true;
+}
+
+function dedupeReviews(list) {
+    const seen = new Set();
+
+    return list.filter((r) => {
+        const key = buildReviewDedupeKey(r);
+        if (!key || seen.has(key)) return false;
+        seen.add(key);
+        return true;
+    });
+}
+
+function sortReviewsForQuality(list) {
+    return [...list].sort((a, b) => {
+        const aHasImage = a.thumb ? 1 : 0;
+        const bHasImage = b.thumb ? 1 : 0;
+        const aRating = Number(a.rating || 0);
+        const bRating = Number(b.rating || 0);
+        const aLength = normalizeText(a.content).length;
+        const bLength = normalizeText(b.content).length;
+        const dateDiff = dateToNum(b.date) - dateToNum(a.date);
+
+        if (bHasImage !== aHasImage) return bHasImage - aHasImage;
+        if (bRating !== aRating) return bRating - aRating;
+        if (bLength !== aLength) return bLength - aLength;
+        if (dateDiff !== 0) return dateDiff;
+        return (a._rand ?? 0) - (b._rand ?? 0);
+    });
+}
+
 function filterReviews(list, q) {
-    let out = list.filter(isValidReview);
-    const query = (q || "").trim().toLowerCase();
+    let out = list.filter(reviewPassesFilter);
+    const query = String(q || "").trim().toLowerCase();
     if (!query) return out;
 
     return out.filter(x =>
@@ -109,6 +228,10 @@ function sortReviews(list, sortKey) {
         out.sort((a, b) => {
             const d = dateToNum(b.date) - dateToNum(a.date);
             if (d !== 0) return d;
+
+            const len = normalizeText(b.content).length - normalizeText(a.content).length;
+            if (len !== 0) return len;
+
             return (a._rand ?? 0) - (b._rand ?? 0);
         });
         return out;
@@ -117,6 +240,10 @@ function sortReviews(list, sortKey) {
     out.sort((a, b) => {
         const r = Number(b.rating || 0) - Number(a.rating || 0);
         if (r !== 0) return r;
+
+        const len = normalizeText(b.content).length - normalizeText(a.content).length;
+        if (len !== 0) return len;
+
         return (a._rand ?? 0) - (b._rand ?? 0);
     });
     return out;
@@ -272,10 +399,10 @@ async function fetchJsonArray(url) {
 
     const arr =
         Array.isArray(json) ? json :
-            Array.isArray(json.data) ? json.data :
-                Array.isArray(json.reviews) ? json.reviews :
-                    Array.isArray(json.items) ? json.items :
-                        [];
+        Array.isArray(json.data) ? json.data :
+        Array.isArray(json.reviews) ? json.reviews :
+        Array.isArray(json.items) ? json.items :
+        [];
 
     if (!Array.isArray(arr)) throw new Error(`${url} JSON 구조가 배열이 아닙니다.`);
     return arr;
@@ -299,7 +426,7 @@ function normalizeSmartstore(item, cfg, idx) {
         date: normalizeDateText(rawDate),
         author: item.user ?? item.nickname ?? item.writer ?? "익명",
         title: item.title ?? "후기",
-        content: item.content ?? item.text ?? item.body ?? "",
+        content: String(item.content ?? item.text ?? item.body ?? "").trim(),
 
         thumb: item.image_url ?? (Array.isArray(item.image_urls) ? item.image_urls[0] : "") ?? "",
         url: "#",
@@ -329,7 +456,7 @@ function normalizeGeneric(item, cfg, idx) {
         date: normalizeDateText(rawDate),
         author: item.nickname ?? item.author ?? item.user ?? item.writer ?? "익명",
         title: item.title ?? item.summary ?? "후기",
-        content: item.content ?? item.text ?? item.body ?? "",
+        content: String(item.content ?? item.text ?? item.body ?? "").trim(),
 
         thumb: item.thumb ?? item.image_url ?? item.imageUrl ?? item.thumbnail ?? "",
         url: "#",
@@ -358,7 +485,11 @@ async function loadAllReviews() {
 
     if (errors.length) console.warn("❌ 리뷰 JSON 일부 로드 실패:", errors);
 
-    REVIEWS = merged.filter(isValidReview);
+    const filtered = merged.filter(reviewPassesFilter);
+    const deduped = dedupeReviews(filtered);
+    REVIEWS = sortReviewsForQuality(deduped);
+
+    console.log(`리뷰 원본 ${merged.length}건 → 필터 후 ${filtered.length}건 → 중복 제거 후 ${REVIEWS.length}건`);
 }
 
 /* ================= MODAL ================= */
@@ -384,7 +515,6 @@ function openReviewModal(id) {
 
     if (!modal || !imgEl || !avatarEl || !authorEl || !sourceEl || !dateEl || !starsEl || !scoreEl || !textEl) return;
 
-    // ✅ 좌측 이미지(thumb 없거나 깨져도 DEFAULT_THUMB 나오게)
     const rawThumb = String(r.thumb ?? "").trim();
     const finalThumb = rawThumb ? resolveThumb(rawThumb) : DEFAULT_THUMB;
 
@@ -392,16 +522,13 @@ function openReviewModal(id) {
     imgEl.style.display = "";
     leftEl && leftEl.classList.remove("is-empty");
 
-    // 이미지 로드 실패 시 기본 썸네일로
     imgEl.onerror = () => {
         imgEl.onerror = null;
         imgEl.src = DEFAULT_THUMB;
         imgEl.style.display = "";
         leftEl && leftEl.classList.remove("is-empty");
     };
-    // ✅ 수정 끝
 
-    // 프로필/메타
     const avatar = resolveAvatar(r.profileImageUrl);
     avatarEl.src = avatar;
     avatarEl.onerror = () => { avatarEl.src = DEFAULT_AVATAR; };
@@ -410,13 +537,11 @@ function openReviewModal(id) {
     sourceEl.textContent = r.sourceLabel ? r.sourceLabel : "";
     dateEl.textContent = r.date ? r.date : "";
 
-    // 별점
     const rating = Number(r.rating || 0);
     const showRating = (r.hasRating && rating);
     starsEl.textContent = showRating ? starsFor(rating) : "";
     scoreEl.textContent = showRating ? `${rating.toFixed(1)}` : "";
 
-    // 본문
     textEl.textContent = (r.content || r.title || "").trim();
 
     modal.classList.add("is-open");
@@ -437,13 +562,11 @@ function closeReviewModal() {
 
 /* ================= EVENTS ================= */
 function bindEvents() {
-    // 닫기
     document.addEventListener("click", (e) => {
         const t = e.target;
         if (t && t.closest && t.closest("[data-modal-close]")) closeReviewModal();
     });
 
-    // 카드 클릭: grid/list 모두 모달
     document.addEventListener("click", (e) => {
         const card = e.target && e.target.closest ? e.target.closest("[data-review-id]") : null;
         if (!card) return;
@@ -453,7 +576,6 @@ function bindEvents() {
         if (id) openReviewModal(id);
     });
 
-    // 키보드
     document.addEventListener("keydown", (e) => {
         if (e.key !== "Enter" && e.key !== " ") return;
         const el = document.activeElement;
@@ -466,7 +588,6 @@ function bindEvents() {
         openReviewModal(id);
     });
 
-    // ESC
     document.addEventListener("keydown", (e) => {
         if (e.key === "Escape") closeReviewModal();
     });
@@ -549,7 +670,7 @@ document.addEventListener("DOMContentLoaded", async () => {
     render();
 });
 
-// ✅ REVIEW 페이지에서만 nav 햄버거 동작 바인딩 (include.js 수정 없이)
+// ✅ REVIEW 페이지에서만 nav 햄버거 동작 바인딩
 document.addEventListener("click", (e) => {
     const btn = e.target.closest && e.target.closest(".nav-toggle");
     if (!btn) return;
