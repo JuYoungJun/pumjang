@@ -1,0 +1,10 @@
+User-agent: *
+Allow: /
+
+# 렌더링에 필요한 정적 리소스 허용
+Allow: /css/
+Allow: /js/
+Allow: /image/
+
+# 사이트맵 위치
+Sitemap: https://pumjang.com/sitemap.xml

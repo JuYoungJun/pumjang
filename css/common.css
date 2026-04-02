@@ -1,0 +1,263 @@
+:root {
+    --dark: #0f172a;
+    --gray: #6b7280;
+    --light: #ffffff;
+    --primary: #2563eb;
+    --soft: #eff6ff;
+    --line: #e5e7eb;
+    --naver: #415a75;
+    --max: 1200px;
+}
+
+/* ================= Reset ================= */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Pretendard', sans-serif;
+    background: var(--light);
+    color: var(--dark);
+    line-height: 1.7;
+}
+
+a {
+    color: inherit;
+    text-decoration: none;
+}
+
+.container {
+    max-width: var(--max);
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+/* ================= Header / Nav ================= */
+header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    background: #fff;
+    border-bottom: 1px solid var(--line);
+    z-index: 100;
+}
+
+.nav {
+    min-height: 72px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 18px;
+}
+
+/* Logo */
+.logo-link {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    min-width: 120px;
+}
+
+.logo-img {
+    width: 72px;
+    height: auto;
+    display: block;
+}
+
+/* Nav menu */
+.nav-menu {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.nav-menu a {
+    padding: 9px 14px;
+    border-radius: 12px;
+    font-weight: 600;
+    font-size: 15px;
+    color: var(--dark);
+    letter-spacing: -0.2px;
+    transition: background .18s ease, color .18s ease;
+    white-space: nowrap;
+}
+
+.nav-menu a:hover {
+    background: rgba(65, 90, 117, 0.14);
+    color: var(--naver);
+}
+
+/* ================= 네이버 스마트스토어 버튼 ================= */
+.nav-cta.nav-cta--naver {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    padding: 11px 18px;
+    border-radius: 9px;
+    background: var(--naver);
+    color: #ffffff !important;
+    font-weight: 700;
+    font-size: 15.5px;
+    letter-spacing: -0.2px;
+    line-height: 1;
+    white-space: nowrap;
+    border: 0;
+    box-shadow: none;
+    transition: background .15s ease, transform .12s ease;
+}
+
+.nav-cta--naver .naver-n {
+    font-weight: 800;
+    font-size: 17px;
+    line-height: 1;
+    opacity: 0.95;
+}
+
+.nav-cta--naver .naver-text {
+    font-weight: 700;
+}
+
+.nav-cta.nav-cta--naver:hover {
+    background: #364d66;
+    transform: translateY(-1px);
+}
+
+.nav-cta.nav-cta--naver:active {
+    transform: translateY(1px);
+}
+
+.nav-cta.nav-cta--naver:focus-visible {
+    outline: 3px solid rgba(65, 90, 117, 0.35);
+    outline-offset: 3px;
+}
+
+/* Mobile toggle */
+.nav-toggle {
+    display: none;
+    font-size: 26px;
+    cursor: pointer;
+    user-select: none;
+    padding: 8px 10px;
+    border-radius: 12px;
+    border: none;
+    background: transparent;
+    -webkit-tap-highlight-color: transparent;
+}
+
+.nav-toggle:hover {
+    background: var(--soft);
+    color: var(--naver);
+}
+
+/* fixed header spacing */
+main {
+    padding-top: 72px;
+}
+
+/* ================= 현재 페이지 Nav Active ================= */
+.nav-menu a.active {
+    color: var(--naver) !important;
+    font-weight: 700;
+}
+
+/* ================= Footer ================= */
+/* Footer 스타일은 css/footer.css 로 분리되었습니다. */
+
+/* ================= Responsive: 900px ================= */
+@media (max-width: 900px) {
+    /* ── Nav 햄버거 ── */
+    .nav-toggle {
+        display: block;
+    }
+
+    .nav-menu {
+        position: absolute;
+        top: 72px;
+        left: 0;
+        right: 0;
+        background: #fff;
+        border-bottom: 1px solid var(--line);
+        display: none;
+        flex-direction: column;
+        gap: 0;
+        padding: 8px 0;
+        z-index: 2000;
+    }
+
+    .nav-menu.active {
+        display: flex;
+    }
+
+    .nav-menu a {
+        width: 100%;
+        padding: 16px 20px;
+        border-radius: 0;
+        color: var(--dark) !important;
+    }
+
+    .nav-menu a:hover {
+        background: rgba(65, 90, 117, .08);
+        color: var(--naver) !important;
+    }
+
+    .nav-cta.nav-cta--naver {
+        margin: 10px 20px;
+        justify-content: center;
+        border-radius: 14px;
+    }
+
+    .logo-img {
+        width: 56px;
+    }
+}
+
+/* ================= Responsive: 600px ================= */
+@media (max-width: 600px) {
+    .nav-cta--naver .naver-text {
+        font-size: 13px;
+    }
+}
+
+/* ================= Responsive: 480px ================= */
+@media (max-width: 480px) {
+    .nav {
+        min-height: 64px;
+    }
+
+    main {
+        padding-top: 64px;
+    }
+
+    .logo-img {
+        width: 48px;
+    }
+
+    /* 네이버 버튼: 텍스트 숨기고 N만 보임 */
+    .nav-cta--naver .naver-text {
+        display: none;
+    }
+
+    .nav-cta--naver {
+        padding: 10px 14px;
+        gap: 0;
+    }
+
+}
+
+/* ================= Responsive: 375px ================= */
+@media (max-width: 375px) {
+    .nav {
+        min-height: 60px;
+    }
+
+    main {
+        padding-top: 60px;
+    }
+
+    .container {
+        padding: 0 14px;
+    }
+}

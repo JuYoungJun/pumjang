@@ -1,0 +1,173 @@
+/* =============================================================
+   footer.css  —  공유 Footer 스타일
+   footer.html 과 1:1 대응. 모든 페이지에서 이 파일을 로드합니다.
+   (index.html, about.html, review.html, sub.html 등)
+============================================================= */
+
+/* ================= Base ================= */
+.site-footer {
+    background: #3f3f3f;
+    color: #e9e9e9;
+}
+
+.footer-inner {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 34px 24px;
+    display: flex;
+    align-items: flex-start;
+    gap: 56px;
+}
+
+.footer-logo {
+    display: inline-flex;
+    align-items: flex-start;
+    flex: 0 0 auto;
+}
+
+.footer-logo img {
+    width: 120px;
+    height: auto;
+    display: block;
+}
+
+.footer-info {
+    flex: 1 1 auto;
+    min-width: 0;
+}
+
+.footer-row {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 12px;
+    line-height: 1.9;
+    font-size: 14px;
+    margin: 6px 0;
+}
+
+.footer-item {
+    display: inline-flex;
+    align-items: center;
+    gap: 14px;
+    white-space: nowrap;
+}
+
+.site-footer .label {
+    color: #f1f1f1;
+    font-weight: 600;
+}
+
+.site-footer .value {
+    color: #d7d7d7;
+    font-weight: 400;
+}
+
+.site-footer .sep {
+    color: #9a9a9a;
+    user-select: none;
+}
+
+.footer-split {
+    justify-content: space-between;
+    gap: 18px;
+}
+
+.footer-left {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 12px;
+}
+
+.footer-right {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 12px;
+    white-space: nowrap;
+}
+
+.footer-address {
+    white-space: normal;
+}
+
+.footer-link {
+    color: #f1f1f1;
+    font-weight: 700;
+}
+
+.footer-link:hover {
+    text-decoration: underline;
+}
+
+.footer-copy {
+    color: #d0d0d0;
+    font-size: 13px;
+}
+
+.site-footer a {
+    color: inherit;
+}
+
+/* ================= Responsive: 900px ================= */
+@media (max-width: 900px) {
+    .footer-inner {
+        flex-direction: column;
+        gap: 18px;
+    }
+
+    .footer-logo img {
+        width: 110px;
+    }
+
+    .footer-right {
+        justify-content: flex-start;
+    }
+}
+
+/* ================= Responsive: 768px ================= */
+@media (max-width: 768px) {
+    .footer-row.footer-split {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 6px;
+    }
+
+    .footer-right {
+        white-space: normal;
+        flex-wrap: wrap;
+    }
+
+    .footer-item {
+        white-space: normal;
+    }
+}
+
+/* ================= Responsive: 600px ================= */
+@media (max-width: 600px) {
+    .footer-inner {
+        padding: 24px 16px;
+    }
+
+    .footer-item {
+        gap: 8px;
+    }
+}
+
+/* ================= Responsive: 480px ================= */
+@media (max-width: 480px) {
+    .footer-inner {
+        padding: 20px 14px;
+        gap: 14px;
+    }
+
+    .footer-row {
+        font-size: 12px;
+        gap: 8px;
+    }
+
+    .footer-logo img {
+        width: 80px;
+    }
+}

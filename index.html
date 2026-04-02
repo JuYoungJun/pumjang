@@ -1,0 +1,829 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+    <title>품장 스마트스토어 | 국내산 무항생제 민물장어 전문 브랜드</title>
+
+    <meta name="description" content="국내산 무항생제 인물장어만을 고집하는 풍장 스마트스토어. 믿고 드실 수 있는 정직한 먹거리를 전합니다" />
+    <link rel="icon" href="assets/img/shared/favicon-32x32.ico" />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Pretendard:wght@300;400;500;600;700;800;900&family=Noto+Sans+KR:wght@300;400;500;600&family=Noto+Serif+KR:wght@400;600&display=swap"
+        rel="stylesheet">
+
+    <script src="https://unpkg.com/micromodal/dist/micromodal.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3/dist/gsap.min.js"></script>
+
+    <!-- <link rel="stylesheet" href="css/common.css" /> -->
+    <link rel="stylesheet" href="css/landing.css" />
+    <link rel="stylesheet" href="css/footer.css" />
+    <link rel="stylesheet" href="css/enjoy-modal.css" />
+    <link rel="stylesheet" href="css/branch-actions.css" />
+    <link rel="stylesheet" href="css/quick-actions-modal.css" />
+    <link rel="stylesheet" href="components/talktalk/talktalk.css" />
+</head>
+
+<body>
+    <div id="site-nav"></div>
+
+    <main class="landing-main">
+
+        <!-- ================= HERO ================= -->
+        <section class="hero" aria-label="메인 배너">
+            <!-- 1번 슬라이드 : 버튼 없음 -->
+            <div class="hero-slide is-active" data-bg="hero-03.webp" data-pos="center center">
+                <div class="hero-overlay"></div>
+                <div class="hero-inner container">
+                    <div class="hero-copy hero-copy--center">
+                        <div class="hero-kicker">THE STORY OF PUMJANG</div>
+                        <h1 class="hero-title">
+                            정직하게 키워 올곧게 품다.<br>
+                            <strong>장어의 기준, 품장</strong>
+                        </h1>
+                        <p class="hero-desc">
+                            삼원수산 직영 양식장에서 식탁까지, 중간 유통 없는 신선함을 경험해보세요.<br>
+                            품장은 단순한 음식점이 아니라, 하나의 장어 전문 기업처럼 운영됩니다.
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 2번 슬라이드 -->
+            <div class="hero-slide" data-bg="hero-02.webp" data-pos="center center">
+                <div class="hero-overlay"></div>
+                <div class="hero-inner container">
+                    <div class="hero-copy hero-copy--center">
+                        <h2 class="hero-title hero-title--compact">
+                            직접 운영하는<br>
+                            <strong>신선한 장어 양식장</strong>
+                        </h2>
+                        <div class="hero-copy__actions">
+                            <a href="sub.html" class="hero-copy__btn" target="_blank">양식장 스토리 바로가기</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 3번 슬라이드 -->
+            <div class="hero-slide" data-bg="eurwang.webp" data-pos="center center">
+                <div class="hero-overlay"></div>
+                <div class="hero-inner container">
+                    <div class="hero-copy hero-copy--center">
+                        <h2 class="hero-title hero-title--compact">
+                            초대형 규모의<br>
+                            <strong>품장 을왕리점</strong>
+                        </h2>
+                        <div class="hero-copy__actions">
+                            <a href="https://naver.me/xnhy1WL4" class="hero-copy__btn">플레이스 바로가기</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 4번 슬라이드 -->
+            <div class="hero-slide" data-bg="naju.webp" data-pos="center center">
+                <div class="hero-overlay"></div>
+                <div class="hero-inner container">
+                    <div class="hero-copy hero-copy--center">
+                        <h2 class="hero-title hero-title--compact">
+                            신선한 장어구이<br>
+                            <strong>품장 나주점</strong>
+                        </h2>
+                        <div class="hero-copy__actions">
+                            <a href="https://naver.me/GPdQb8Tm" class="hero-copy__btn">플레이스 바로가기</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="hero-dots" aria-label="슬라이드 이동">
+                <button class="is-active" type="button" aria-label="슬라이드 1"></button>
+                <button type="button" aria-label="슬라이드 2"></button>
+                <button type="button" aria-label="슬라이드 3"></button>
+                <button type="button" aria-label="슬라이드 4"></button>
+            </div>
+        </section>
+
+        <!-- ================= QUICK ================= -->
+        <section class="quick-links" aria-label="바로가기">
+            <div class="container quick-links__grid">
+                <button type="button" class="quick-link js-open-store-finder">
+                    <span class="quick-link__icon">
+                        <img src="assets/img/index/icon-store.png" alt="">
+                    </span>
+                    <span class="quick-link__text">가까운 매장 찾기 &gt;</span>
+                </button>
+
+                <button type="button" class="quick-link js-open-booking-entry">
+                    <span class="quick-link__icon">
+                        <img src="assets/img/index/icon-calendar.png" alt="">
+                    </span>
+                    <span class="quick-link__text">실시간 예약하기 &gt;</span>
+                </button>
+
+                <a href="sub.html" class="quick-link" target="_blank">
+                    <span class="quick-link__icon">
+                        <img src="assets/img/index/icon-farm.png" alt="">
+                    </span>
+                    <span class="quick-link__text">직영 양식장 스토리 &gt;</span>
+                </a>
+            </div>
+        </section>
+
+        <!-- ================= WHY ================= -->
+        <section class="why" id="story" aria-label="왜 품장인가">
+            <div class="container why__grid">
+                <div class="why__intro">
+                    <div class="section-kicker section-kicker--light">WHY PUMJANG</div>
+                    <h2>왜 품장인가?</h2>
+                    <p>직영의 신뢰와 엄선된 시스템으로 장어 경험의 기준을 만듭니다.</p>
+                    <p>우리가 지키는 약속은 단순한 설명이 아니라 운영 원칙입니다.</p>
+                </div>
+
+                <div class="why__cards">
+                    <article class="why-card">
+                        <h3>DIRECT</h3>
+                        <strong>나주 직영수산 직송</strong>
+                        <p>직접 키운 장어만 사용합니다. 원산지와 유통 과정이 분명한 신선함을 보장합니다.</p>
+                    </article>
+
+                    <article class="why-card">
+                        <h3>SAFE</h3>
+                        <strong>무항생제 HACCP 기반</strong>
+                        <p>수질 관리와 위생 기준을 시스템으로 운영합니다. 건강한 선택이 아니라 기본입니다.</p>
+                    </article>
+
+                    <article class="why-card">
+                        <h3>FRESH</h3>
+                        <strong>당일 손질, 당일 판매 원칙</strong>
+                        <p>신선함을 위해 당일 손질과 판매를 원칙으로 합니다. 식탁까지 기준을 지킵니다.</p>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <!-- ================= FARM STORY ================= -->
+        <section class="farm-story" id="farm-story" aria-label="직영 양식장 이야기">
+            <img src="assets/img/index/brand-story.webp" alt="직영 양식장">
+            <div class="farm-story__overlay"></div>
+
+            <!-- <div class="container farm-story__content">
+                <div class="section-kicker section-kicker--light">FARM TO TABLE</div>
+                <p class="farm-story__sub">지하 500M 천연 암반수</p>
+                <h2>
+                    국내산 자포니카 장어<br>
+                    청결한 수조 관리<br>
+                    <strong>직영 양식장의 이야기</strong>
+                </h2>
+            </div> -->
+            <div class="container farm-story__content">
+                <div class="section-kicker section-kicker--light">FARM TO TABLE</div>
+                <p class="farm-story__sub">지하 350M 천연 암반수</p>
+                <h2>
+                    국내산 자포니카 장어<br>
+                    청결한 수조 관리<br>
+                    <strong>직영 양식장의 이야기</strong>
+                </h2>
+
+                <div class="farm-story__cta">
+                    <a href="sub.html" class="farm-story__btn">직영 양식장 바로가기</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- ================= LOCATION ================= -->
+        <section class="location" id="location" aria-label="지점 소개">
+            <header class="section-head section-head--location">
+                <div class="section-kicker">LOCATION</div>
+                <h2>지점 소개</h2>
+            </header>
+
+            <div class="location__stack">
+                <article class="branch branch--left">
+                    <img src="assets/img/index/naju.webp" alt="나주 본점">
+                    <div class="branch__overlay"></div>
+                    <div class="container branch__content">
+                        <div class="branch__eyebrow">품장의 시작, 전통과 신뢰의 상징</div>
+                        <div class="branch__label">품장 본점 · 직영 프리미엄 본점</div>
+                        <h3>나주 본점</h3>
+                        <div class="branch__chips">
+                            <span>단체 가능</span>
+                            <span>동네 맛집</span>
+                            <span>주차 편의</span>
+                        </div>
+                        <p class="branch__desc branch__desc--left">
+                           승촌보 인근, 광주/전남 대표 맛집. “정석으로 즐기는 한 끼’를 가장 잘 느낄 수 있는 지점
+                        </p>
+                        <div class="branch__actions">
+                            <a href="#" class="js-naver-route" data-elng="126.752246" data-elat="35.064414"
+                                data-etext="품장 나주점">네이버지도</a>
+                            <a href="tel:061-123-4567" class="reserve-btn js-reserve-trigger" data-reserve-type="phone"
+                                data-branch-name="품장 나주점" data-phone="061-123-4567">
+                                예약하기
+                            </a>
+                        </div>
+                    </div>
+                </article>
+
+                <article class="branch branch--right">
+                    <img src="assets/img/index/eurwang.webp" alt="을왕리 본점">
+                    <div class="branch__overlay"></div>
+                    <div class="container branch__content">
+                        <div class="branch__eyebrow">초대형 규모, 서해 노을 뷰와 함께하는 품장의 시그니처 공간</div>
+                        <div class="branch__label">품장 프라이빗 다이닝 · 오션뷰 라운지</div>
+                        <h3>을왕리 본점</h3>
+                        <div class="branch__chips">
+                            <span>단체 가능</span>
+                            <span>프라이빗 룸</span>
+                            <span>주차 편의</span>
+                        </div>
+                        <p class="branch__desc">
+                            영종도 고지대에서 바라보는 을왕리 해변풍경과 함께 장어구이를 즐길 수 있는 지점
+                        </p>
+                        <div class="branch__actions">
+                            <a href="#" class="js-naver-route" data-elng="126.373171" data-elat="37.453956"
+                                data-etext="품장 을왕리점">네이버지도</a>
+                            <a href="https://m.booking.naver.com/booking/6/bizes/1484723/items/7026688?area=bmp&lang=ko&map-search=1&service-target=map-pc&theme=place"
+                                class="reserve-btn js-reserve-trigger" data-reserve-type="naver"
+                                data-branch-name="품장 을왕리점" data-phone="032-751-1239"
+                                data-reserve-url="https://m.booking.naver.com/booking/6/bizes/1484723/items/7026688?area=bmp&lang=ko&map-search=1&service-target=map-pc&theme=place">
+                                예약하기
+                            </a>
+                        </div>
+                    </div>
+                </article>
+            </div>
+        </section>
+
+
+        <!-- ================= SIGNATURE ================= -->
+        <section class="signature" aria-label="시그니처 메뉴">
+            <div class="signature__watermark" aria-hidden="true">Menu Set</div>
+
+            <div class="container">
+                <header class="section-head signature__head">
+                    <div class="section-kicker">MENU</div>
+                    <h2>메뉴 소개</h2>
+                </header>
+
+                <div class="signature__grid">
+                    <article class="menu-card menu-card--featured">
+                        <img src="assets/img/index/menu-01.webp" alt="장어 숯불구이">
+                        <div class="menu-card__overlay"></div>
+                        <div class="menu-card__body">
+                            <div class="menu-card__badge">BEST</div>
+                            <p class="menu-card__eyebrow">처음 방문 고객 1순위</p>
+
+                            <div class="menu-card__title-row">
+                                <h3>장어 숯불구이</h3>
+                                <span class="menu-card__sub">메인메뉴</span>
+                            </div>
+
+                            <ul class="menu-card__meta">
+                                <li><strong>포인트</strong> 두툼한 식감과 숯향</li>
+                                <li><strong>페어링</strong> 셀프바 채소 &amp; 소스</li>
+                            </ul>
+                        </div>
+                    </article>
+
+                    <article class="menu-card">
+                        <img src="assets/img/index/menu-02.webp" alt="장어탕">
+                        <div class="menu-card__overlay"></div>
+                        <div class="menu-card__body">
+                            <p class="menu-card__eyebrow">후식 선호도 1위</p>
+
+                            <div class="menu-card__title-row">
+                                <h3>장어탕</h3>
+                                <span class="menu-card__sub">사이드메뉴</span>
+                            </div>
+
+                            <ul class="menu-card__meta">
+                                <li><strong>포인트</strong> 푸짐한 속재료</li>
+                                <li><strong>페어링</strong> 장어 소금구이</li>
+                            </ul>
+                        </div>
+                    </article>
+
+                    <article class="menu-card">
+                        <img src="assets/img/index/menu-03.webp" alt="장어 양념구이">
+                        <div class="menu-card__overlay"></div>
+                        <div class="menu-card__body">
+                            <p class="menu-card__eyebrow">장어계의 새로운 패러다임</p>
+
+                            <div class="menu-card__title-row">
+                                <h3>장어 양념구이</h3>
+                                <span class="menu-card__sub">포장 전용</span>
+                            </div>
+
+                            <ul class="menu-card__meta">
+                                <li><strong>포인트</strong> 두툼한 식감과 숯향</li>
+                                <li><strong>페어링</strong> 셀프바 채소 &amp; 소스</li>
+                            </ul>
+                        </div>
+                    </article>
+                </div>
+
+                <div class="signature__cta">
+                    <a href="#" data-enjoy-open class="signature__main-btn">품장 장어구이 집에서 맛있게 먹기 &gt;</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- ================= REVIEW ================= -->
+        <section class="review-board" aria-label="고객 후기">
+            <div class="review-board__watermark" aria-hidden="true">Review Review</div>
+
+            <div class="container">
+                <header class="review-board__head">
+                    <h2>
+                        검증된 맛집<br>
+                        <strong>리뷰는 거짓말을 하지 않습니다</strong>
+                    </h2>
+                </header>
+
+                <div class="review-board__grid" id="reviewGrid">
+                    <!-- JS 렌더링 -->
+                </div>
+
+                <div class="review-board__dots" id="reviewDots"></div>
+                <p class="review-board__caption">* 품장 실제 고객 후기 기반</p>
+            </div>
+        </section>
+    </main>
+
+    <div id="site-footer"></div>
+
+    <script src="components/talktalk/talktalk.js"></script>
+    <script>
+        async function loadPartial(targetId, file) {
+            const target = document.getElementById(targetId);
+            if (!target) return;
+
+            try {
+                const response = await fetch(file, { cache: "no-store" });
+                if (!response.ok) throw new Error(file + " load failed");
+                target.innerHTML = await response.text();
+            } catch (error) {
+                console.error(error);
+            }
+        }
+
+
+        function normalizeText(text) {
+            return String(text || '')
+                .replace(/\s+/g, ' ')
+                .replace(/[~!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?`…]/g, ' ')
+                .trim();
+        }
+
+        function hasMeaningfulContent(text) {
+            const raw = String(text || '').trim();
+            const normalized = normalizeText(raw).toLowerCase();
+
+            if (!normalized) return false;
+
+            const blockedExact = [
+                'ㅇ', 'ㅇㅇ', 'ㅎ', 'ㅎㅎ', '굿', '굿굿', '좋아요', '맛있어요',
+                '최고', '추천', 'good', 'goood', '…', '......', '.....'
+            ];
+
+            if (blockedExact.includes(raw.toLowerCase()) || blockedExact.includes(normalized)) {
+                return false;
+            }
+
+            if (normalized.length < 8) return false;
+
+            const onlySimple = /^[ㄱ-ㅎㅏ-ㅣ가-힣a-z0-9]{1,6}$/i;
+            if (onlySimple.test(normalized)) return false;
+
+            return true;
+        }
+
+        function isNegativeReview(text) {
+            const normalized = normalizeText(text).toLowerCase();
+
+            const negativeKeywords = [
+                '불친절', '별로', '최악', '다신', '다시는', '실망', '더럽',
+                '불편', '맛없', '비추천', '문제', '아쉽', '환불', '냄새',
+                '불만', '오래걸', '눈치', '불쾌', '안 좋', '비싸',
+                '별루', '추천하지 않', '재구매 안', '실수', '형편없'
+            ];
+
+            return negativeKeywords.some(keyword => normalized.includes(keyword));
+        }
+
+        function getSourceLabel(source) {
+            if (source === 'kakao_map') return '카카오맵';
+            if (source === 'naver_map') return '네이버플레이스';
+            if (source === 'naver_smartstore') return '스마트스토어';
+            return '리뷰';
+        }
+
+        function getStars(score) {
+            const safeScore = Math.max(0, Math.min(5, Number(score || 0)));
+            if (!safeScore) return '';
+            return '★'.repeat(safeScore) + '☆'.repeat(5 - safeScore);
+        }
+
+        function pickReviewImage(item) {
+            if (item.image_url) return item.image_url;
+            if (Array.isArray(item.image_urls) && item.image_urls.length > 0) {
+                return item.image_urls[0];
+            }
+            return '';
+        }
+
+        function pickProfileImage(item) {
+            return item.profile_image_url || 'assets/img/review/profile.webp';
+        }
+
+        function mapKakaoReview(item) {
+            return {
+                source: 'kakao_map',
+                nickname: item.nickname || '고객',
+                rating: Number(item.rating || 0),
+                content: String(item.content || '').trim(),
+                image: pickReviewImage(item),
+                profileImage: pickProfileImage(item)
+            };
+        }
+
+        function mapNaverMapReview(item) {
+            return {
+                source: 'naver_map',
+                nickname: item.nickname || '고객',
+                rating: null,
+                content: String(item.content || '').trim(),
+                image: pickReviewImage(item),
+                profileImage: pickProfileImage(item)
+            };
+        }
+
+        function mapSmartStoreReview(item) {
+            return {
+                source: 'naver_smartstore',
+                nickname: item.user || '구매고객',
+                rating: Number(item.score || 0),
+                content: String(item.content || '').trim(),
+                image: pickReviewImage(item),
+                profileImage: pickProfileImage(item)
+            };
+        }
+
+        function reviewPassesFilter(review) {
+            if (!hasMeaningfulContent(review.content)) return false;
+            if (isNegativeReview(review.content)) return false;
+
+            if (review.source === 'kakao_map' && Number(review.rating || 0) < 4) return false;
+            if (review.source === 'naver_smartstore' && Number(review.rating || 0) < 4) return false;
+
+            return true;
+        }
+
+        function dedupeReviews(reviews) {
+            const seen = new Set();
+
+            return reviews.filter((review) => {
+                const key = `${review.nickname}|${normalizeText(review.content)}`;
+                if (seen.has(key)) return false;
+                seen.add(key);
+                return true;
+            });
+        }
+
+        function sortReviews(reviews) {
+            return [...reviews].sort((a, b) => {
+                const aHasImage = a.image ? 1 : 0;
+                const bHasImage = b.image ? 1 : 0;
+                const aRating = Number(a.rating || 0);
+                const bRating = Number(b.rating || 0);
+                const aLength = normalizeText(a.content).length;
+                const bLength = normalizeText(b.content).length;
+
+                if (bHasImage !== aHasImage) return bHasImage - aHasImage;
+                if (bRating !== aRating) return bRating - aRating;
+                if (bLength !== aLength) return bLength - aLength;
+                return 0;
+            });
+        }
+
+        // ── 리뷰 순환 상태 ──────────────────────────────────────────
+        let _allReviews = [];
+        let _reviewPage = 0;   // 현재 페이지 (0-based)
+        let _reviewTimer = null;
+        let _isAnimating = false;
+        const REVIEWS_PER_PAGE = 4;
+        const REVIEW_INTERVAL = 5500;
+
+        // 카드마다 살짝 다른 기울기 (노트 붙인 느낌)
+        const TILTS = ['-1.2deg', '0.8deg', '-0.5deg', '1.1deg'];
+
+        function totalPages() {
+            return Math.ceil(_allReviews.length / REVIEWS_PER_PAGE);
+        }
+
+        function getPageSlice(page) {
+            const start = (page * REVIEWS_PER_PAGE) % _allReviews.length;
+            const result = [];
+            for (let i = 0; i < REVIEWS_PER_PAGE; i++) {
+                result.push(_allReviews[(start + i) % _allReviews.length]);
+            }
+            return result;
+        }
+
+        function buildReviewCard(review, idx) {
+            const nickname = escapeHtml(review.nickname);
+            const content = escapeHtml(review.content);
+            const source = escapeHtml(getSourceLabel(review.source));
+            const stars = review.rating ? `<div class="review-note__stars">${getStars(review.rating)}</div>` : '';
+            const profileImage = escapeHtml(review.profileImage);
+            const reviewImage = review.image ? `
+                <div class="review-note__image">
+                    <img src="${escapeHtml(review.image)}" alt="${nickname} 리뷰 사진" loading="lazy" referrerpolicy="no-referrer">
+                </div>` : '';
+            const tilt = TILTS[idx % TILTS.length];
+
+            return `
+                <article class="review-note" style="--tilt:${tilt}">
+                    <div class="review-note__tape"></div>
+                    <div class="review-note__body">
+                        <div class="review-note__top">
+                            <div class="review-note__profile">
+                                <img src="${profileImage}" alt="${nickname} 프로필" loading="lazy" referrerpolicy="no-referrer">
+                            </div>
+                            <div class="review-note__meta">
+                                <div class="review-note__name">${nickname}</div>
+                                ${stars}
+                                <div class="review-note__source">${source}</div>
+                            </div>
+                        </div>
+                        ${reviewImage}
+                        <p class="review-note__text">${content}</p>
+                    </div>
+                </article>`;
+        }
+
+        function updateDots() {
+            const dotsEl = document.getElementById('reviewDots');
+            if (!dotsEl) return;
+            const pages = totalPages();
+            if (pages <= 1) { dotsEl.style.display = 'none'; return; }
+
+            dotsEl.innerHTML = Array.from({ length: pages }, (_, i) =>
+                `<button class="review-board__dot${i === _reviewPage ? ' is-active' : ''}"
+                         type="button" aria-label="리뷰 페이지 ${i + 1}" data-page="${i}"></button>`
+            ).join('');
+
+            dotsEl.querySelectorAll('.review-board__dot').forEach(btn => {
+                btn.addEventListener('click', () => {
+                    const p = Number(btn.dataset.page);
+                    if (p !== _reviewPage) goToPage(p);
+                });
+            });
+        }
+
+        function renderReviews(reviews, animate = true) {
+            const grid = document.getElementById('reviewGrid');
+            if (!grid) return;
+
+            if (!reviews.length) {
+                grid.innerHTML = `<div class="review-note__empty">표시할 리뷰가 없습니다.</div>`;
+                return;
+            }
+
+            if (!animate) {
+                grid.innerHTML = reviews.map((r, i) => buildReviewCard(r, i)).join('');
+                updateDots();
+                return;
+            }
+
+            // 기존 카드 퇴장
+            const existing = grid.querySelectorAll('.review-note');
+            if (existing.length) {
+                existing.forEach(el => el.classList.add('is-leaving'));
+                setTimeout(() => {
+                    grid.innerHTML = reviews.map((r, i) => buildReviewCard(r, i)).join('');
+                    updateDots();
+                }, 380);
+            } else {
+                grid.innerHTML = reviews.map((r, i) => buildReviewCard(r, i)).join('');
+                updateDots();
+            }
+        }
+
+        function goToPage(page) {
+            if (_isAnimating) return;
+            _isAnimating = true;
+            _reviewPage = page;
+            renderReviews(getPageSlice(_reviewPage), true);
+            setTimeout(() => { _isAnimating = false; }, 750);
+        }
+
+        function showNextReviews() {
+            if (_allReviews.length <= REVIEWS_PER_PAGE) return;
+            goToPage((_reviewPage + 1) % totalPages());
+        }
+
+        function startReviewCycle() {
+            if (_reviewTimer) clearInterval(_reviewTimer);
+            _reviewTimer = setInterval(showNextReviews, REVIEW_INTERVAL);
+        }
+
+        async function loadReviews() {
+            try {
+                const [kakaoRes, naverMapRes, smartRes] = await Promise.all([
+                    fetch('json/kakao_map.json'),
+                    fetch('json/naver_map.json'),
+                    fetch('json/naver_smartstore.json')
+                ]);
+
+                if (!kakaoRes.ok || !naverMapRes.ok || !smartRes.ok) {
+                    throw new Error('리뷰 JSON 로드 실패');
+                }
+
+                const [kakaoJson, naverMapJson, smartJson] = await Promise.all([
+                    kakaoRes.json(),
+                    naverMapRes.json(),
+                    smartRes.json()
+                ]);
+
+                const kakaoReviews = Array.isArray(kakaoJson) ? kakaoJson.map(mapKakaoReview) : [];
+                const naverMapReviews = Array.isArray(naverMapJson) ? naverMapJson.map(mapNaverMapReview) : [];
+                const smartReviews = Array.isArray(smartJson?.reviews) ? smartJson.reviews.map(mapSmartStoreReview) : [];
+
+                const merged = [...kakaoReviews, ...naverMapReviews, ...smartReviews];
+                const filtered = merged.filter(reviewPassesFilter);
+                const deduped = dedupeReviews(filtered);
+                _allReviews = sortReviews(deduped);
+
+                _reviewPage = 0;
+                renderReviews(getPageSlice(0), false); // 첫 페이지는 애니만 (페이지 로드 후)
+                setTimeout(() => startReviewCycle(), REVIEW_INTERVAL);
+            } catch (error) {
+                console.error('리뷰 로딩 실패:', error);
+                renderReviews([]);
+            }
+        }
+
+        document.addEventListener("DOMContentLoaded", async () => {
+            await loadPartial("site-nav", "nav-landing.html");
+            await loadPartial("site-footer", "footer.html");
+
+            const syncHeroViewport = () => {
+                const root = document.documentElement;
+                const headerEl = document.getElementById("landingHeader") || document.querySelector("#landingHeader .nav");
+                const headerHeight = headerEl ? Math.round(headerEl.offsetHeight) : 72;
+                const vh = window.innerHeight * 0.01;
+
+                root.style.setProperty("--vh", `${vh}px`);
+                root.style.setProperty("--header-height", `${headerHeight}px`);
+            };
+
+            syncHeroViewport();
+            window.addEventListener("resize", syncHeroViewport);
+            window.addEventListener("orientationchange", syncHeroViewport);
+            window.addEventListener("load", syncHeroViewport);
+
+            const header = document.getElementById("landingHeader");
+            const siteNav = document.getElementById("site-nav");
+            const navMenu = document.getElementById("navMenu");
+            const hamburger = document.getElementById("landingHamburger");
+            const logoImg = document.getElementById("landingLogo");
+
+            if (header && siteNav) {
+                const applyHeaderState = () => {
+                    const y = window.scrollY || document.documentElement.scrollTop || 0;
+                    const atTop = y <= 50;
+                    document.body.classList.toggle("at-top", atTop);
+                    siteNav.classList.toggle("is-scrolled", !atTop);
+
+                    if (logoImg) {
+                        logoImg.src = atTop
+                            ? "assets/img/shared/icon_white.svg"
+                            : "assets/img/shared/icon_black.svg";
+                    }
+                };
+
+                document.body.classList.add("at-top");
+                siteNav.classList.remove("is-scrolled");
+
+                requestAnimationFrame(applyHeaderState);
+                window.addEventListener("scroll", applyHeaderState, { passive: true });
+                window.addEventListener("load", applyHeaderState);
+
+                const closeMenu = () => {
+                    if (!navMenu) return;
+                    navMenu.classList.remove("open");
+                    if (hamburger) {
+                        hamburger.setAttribute("aria-expanded", "false");
+                        hamburger.setAttribute("aria-label", "메뉴 열기");
+                    }
+                };
+
+                const toggleMenu = () => {
+                    if (!navMenu) return;
+                    const opened = navMenu.classList.toggle("open");
+                    if (hamburger) {
+                        hamburger.setAttribute("aria-expanded", opened ? "true" : "false");
+                        hamburger.setAttribute("aria-label", opened ? "메뉴 닫기" : "메뉴 열기");
+                    }
+                };
+
+                if (hamburger) {
+                    hamburger.addEventListener("click", toggleMenu);
+                    hamburger.addEventListener("keydown", (e) => {
+                        if (e.key === "Enter" || e.key === " ") {
+                            e.preventDefault();
+                            toggleMenu();
+                        }
+                        if (e.key === "Escape") {
+                            closeMenu();
+                        }
+                    });
+                }
+
+                /* 메뉴 링크 클릭 시 닫기 (모바일 UX) */
+                if (navMenu) {
+                    navMenu.querySelectorAll("a").forEach((a) => {
+                        a.addEventListener("click", closeMenu);
+                    });
+                }
+
+                /* 메뉴 바깥 클릭 시 닫기 */
+                document.addEventListener("click", (e) => {
+                    if (!navMenu || !hamburger) return;
+                    if (!navMenu.contains(e.target) && !hamburger.contains(e.target)) {
+                        closeMenu();
+                    }
+                });
+
+                /* ESC 키로 닫기 */
+                document.addEventListener("keydown", (e) => {
+                    if (e.key === "Escape") closeMenu();
+                });
+            }
+
+            const HERO_IMG_BASE = "assets/img/index/";
+            const slides = document.querySelectorAll(".hero-slide");
+            const dots = document.querySelectorAll(".hero-dots button");
+
+            slides.forEach((slide) => {
+                const file = slide.getAttribute("data-bg");
+                const pos = slide.getAttribute("data-pos") || "center center";
+                slide.style.backgroundImage = `url('${HERO_IMG_BASE}${file}')`;
+                slide.style.backgroundPosition = pos;
+            });
+
+            if (slides.length && dots.length) {
+                let index = 0;
+                let timer = null;
+
+                const showSlide = (i) => {
+                    slides.forEach((slide) => slide.classList.remove("is-active"));
+                    dots.forEach((dot) => dot.classList.remove("is-active"));
+                    slides[i].classList.add("is-active");
+                    dots[i].classList.add("is-active");
+                    index = i;
+                };
+
+                const startAuto = () => {
+                    if (timer) clearInterval(timer);
+                    timer = setInterval(() => {
+                        showSlide((index + 1) % slides.length);
+                    }, 3500);
+                };
+
+                showSlide(0);
+                startAuto();
+
+                dots.forEach((dot, i) => {
+                    dot.addEventListener("click", () => {
+                        showSlide(i);
+                        startAuto();
+                    });
+                });
+            }
+
+
+            loadReviews();
+
+            /* ── TalkTalk 위젯 초기화 ── */
+            try {
+                await initTalkTalk({ htmlPath: './components/talktalk/talktalk.html' });
+            } catch (e) {
+                console.warn('TalkTalk init failed:', e);
+            }
+        });
+    </script>
+
+    <script src="js/enjoy-modal.js" defer></script>
+    <script src="js/store-route.js" defer></script>
+    <script src="js/branch-actions.js" defer></script>
+    <script src="js/quick-actions-modal.js" defer></script>
+</body>
+
+</html>

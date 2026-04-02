@@ -1,0 +1,648 @@
+:root {
+    --bg: #e7e0d4;
+    --text: #666d75;
+    --text-dark: #243d67;
+    --gold: #baa06a;
+    --muted: #98a1a9;
+    --white: #ffffff;
+    --page-width: 920px;
+    --hero-height: 510px;
+    --section-space: 84px;
+    --side-space: 18px;
+}
+
+/* reset */
+* {
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--text);
+    font-family: "Apple SD Gothic Neo", "Noto Sans KR", "Malgun Gothic", Arial, sans-serif;
+    line-height: 1.8;
+    word-break: keep-all;
+}
+
+img {
+    display: block;
+    width: 100%;
+    height: auto;
+}
+
+figure,
+h1,
+h2,
+p {
+    margin: 0;
+}
+
+.farm-page {
+    width: 100%;
+    overflow: hidden;
+    background: var(--bg);
+}
+
+.page-container {
+    width: min(100%, var(--page-width));
+    margin: 0 auto;
+    padding-left: var(--side-space);
+    padding-right: var(--side-space);
+}
+
+/* hero */
+.hero {
+    position: relative;
+    min-height: var(--hero-height);
+}
+
+.hero-media {
+    position: absolute;
+    inset: 0;
+}
+
+.hero-media img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center center;
+}
+
+.hero-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to bottom,
+            rgba(0, 0, 0, 0.36),
+            rgba(0, 0, 0, 0.10),
+            rgba(0, 0, 0, 0.24));
+}
+
+.hero-inner {
+    position: relative;
+    z-index: 2;
+    min-height: var(--hero-height);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+
+.hero-copy {
+    max-width: 660px;
+    margin-top: 8px;
+    color: var(--white);
+    text-shadow: 0 2px 16px rgba(0, 0, 0, 0.18);
+}
+
+.hero-eyebrow {
+    font-size: 10px;
+    font-weight: 500;
+    letter-spacing: 0.12em;
+    margin-bottom: 12px;
+}
+
+.hero-title {
+    font-size: clamp(24px, 4vw, 44px);
+    font-weight: 700;
+    line-height: 1.18;
+    letter-spacing: -0.05em;
+}
+
+.hero-desc {
+    margin-top: 16px;
+    font-size: 11px;
+    line-height: 1.8;
+    color: rgba(255, 255, 255, 0.96);
+}
+
+/* common */
+.section {
+    padding-top: var(--section-space);
+}
+
+.section:last-child {
+    padding-bottom: 92px;
+}
+
+.section-head {
+    position: relative;
+    text-align: center;
+}
+
+.narrow-copy {
+    max-width: 560px;
+    margin: 0 auto;
+}
+
+.point-label,
+.eel03-point {
+    font-size: 10px;
+    line-height: 1;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    color: var(--muted);
+    margin-bottom: 12px;
+}
+
+.section-title,
+.eel03-title {
+    font-size: clamp(20px, 3vw, 26px);
+    font-weight: 800;
+    line-height: 1.2;
+    color: var(--text-dark);
+    letter-spacing: -0.05em;
+}
+
+.section-copy {
+    margin-top: 18px;
+    text-align: center;
+}
+
+.section-copy p {
+    font-size: 12px;
+    line-height: 1.95;
+    color: var(--text);
+    letter-spacing: -0.01em;
+}
+
+.section-copy p+p {
+    margin-top: 10px;
+}
+
+.section-copy-tight {
+    max-width: 435px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.section-copy-medium {
+    max-width: 510px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/* gold highlight */
+.hl {
+    position: relative;
+    display: inline-block;
+    z-index: 1;
+    padding: 0 3px 1px;
+}
+
+.hl::before {
+    content: "";
+    position: absolute;
+    left: -4px;
+    right: -4px;
+    bottom: 2px;
+    height: 0.58em;
+    background: rgba(201, 183, 142, 0.95);
+    border-radius: 8px 10px 8px 7px;
+    transform: rotate(-1.2deg);
+    z-index: -1;
+}
+
+.hl::after {
+    content: "";
+    position: absolute;
+    left: 1px;
+    right: 8px;
+    bottom: 4px;
+    height: 0.42em;
+    background: rgba(220, 204, 164, 0.55);
+    border-radius: 7px;
+    transform: rotate(0.9deg);
+    z-index: -1;
+}
+
+/* image common */
+.image-card {
+    overflow: hidden;
+    background: #d8cfc1;
+}
+
+.image-card img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center center;
+}
+
+.image-grid {
+    display: grid;
+}
+
+.image-grid-2 {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 28px;
+}
+
+/* point 01 */
+.point-01 {
+    padding-top: 76px;
+}
+
+.point01-grid {
+    margin-top: 50px;
+}
+
+.indoor-card {
+    aspect-ratio: 1 / 1.14;
+}
+
+/* point 02 */
+.point-02 {
+    padding-top: 88px;
+}
+
+.point02-head {
+    max-width: 590px;
+}
+
+.point02-head .section-title {
+    margin-bottom: 18px;
+}
+
+.point02-badge {
+    position: absolute;
+    z-index: 1;
+    pointer-events: none;
+}
+
+.point02-badge img {
+    width: 100%;
+    height: auto;
+    object-fit: contain;
+    opacity: 0.62;
+}
+
+.point02-badge-left {
+    left: -6px;
+    top: 108px;
+    width: 132px;
+}
+
+.point02-badge-right {
+    right: -10px;
+    top: 106px;
+    width: 150px;
+}
+
+.point-02 .section-copy {
+    position: relative;
+    z-index: 2;
+}
+
+.aerial-card {
+    margin-top: 42px;
+    aspect-ratio: 2.14 / 1;
+}
+
+.cert-grid {
+    margin-top: 14px;
+}
+
+.cert-card {
+    aspect-ratio: 1 / 1.33;
+    background: #f4eee7;
+}
+
+/* point 03 */
+.eel03 {
+    padding-top: 84px;
+    background: var(--bg);
+}
+
+.eel03-container {
+    width: min(100%, 920px);
+    max-width: 920px;
+    margin: 0 auto;
+    padding-left: 18px;
+    padding-right: 18px;
+}
+
+.eel03-top {
+    position: relative;
+    max-width: 760px;
+    margin: 0 auto;
+    min-height: 248px;
+}
+
+.eel03-copy-wrap {
+    width: 100%;
+    max-width: 520px;
+    margin: 0 auto;
+    text-align: center;
+}
+
+.eel03-title {
+    margin: 0 0 24px;
+    text-align: center;
+}
+
+.eel03-copy {
+    max-width: 420px;
+    margin: 0 auto;
+    text-align: center;
+}
+
+.eel03-copy p {
+    margin: 0 0 6px;
+    font-size: 11px;
+    line-height: 1.9;
+    color: #5f6670;
+    font-weight: 500;
+    letter-spacing: -0.01em;
+}
+
+.eel03-copy p:last-child {
+    margin-bottom: 0;
+}
+
+.eel03-copy strong {
+    font-weight: 800;
+    color: var(--text-dark);
+}
+
+.eel03-image-wrap {
+    position: absolute;
+    top: 20px;
+    right: 18px;
+    width: 210px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.eel03-img {
+    width: 100%;
+    max-width: 210px;
+    object-fit: contain;
+    filter: drop-shadow(0 10px 14px rgba(0, 0, 0, 0.14));
+}
+
+.tank-card {
+    margin-top: 34px;
+    aspect-ratio: 2.08 / 1;
+}
+
+.bottom-copy {
+    max-width: 470px;
+    margin: 52px auto 0;
+    text-align: center;
+}
+
+.bottom-copy p {
+    font-size: 11px;
+    line-height: 1.95;
+    color: #5f6670;
+    letter-spacing: -0.01em;
+}
+
+.bottom-copy p+p {
+    margin-top: 10px;
+}
+
+/* tablet */
+@media (max-width: 1024px) {
+    :root {
+        --hero-height: 472px;
+        --section-space: 76px;
+    }
+
+    .hero-title {
+        font-size: clamp(24px, 4vw, 38px);
+    }
+
+    .section-title,
+    .eel03-title {
+        font-size: 23px;
+    }
+
+    .point02-badge-left {
+        left: 6px;
+        top: 112px;
+        width: 116px;
+    }
+
+    .point02-badge-right {
+        right: 4px;
+        top: 110px;
+        width: 132px;
+    }
+
+    .eel03-top {
+        max-width: 700px;
+        min-height: 230px;
+    }
+
+    .eel03-image-wrap {
+        width: 184px;
+        right: 8px;
+        top: 28px;
+    }
+
+    .eel03-img {
+        max-width: 184px;
+    }
+}
+
+/* mobile */
+@media (max-width: 768px) {
+    :root {
+        --hero-height: 425px;
+        --section-space: 62px;
+        --side-space: 16px;
+    }
+
+    .hero-copy {
+        max-width: 92%;
+    }
+
+    .hero-title {
+        font-size: 22px;
+        line-height: 1.24;
+    }
+
+    .hero-desc {
+        font-size: 10px;
+        line-height: 1.72;
+        margin-top: 12px;
+    }
+
+    .section-title,
+    .eel03-title {
+        font-size: 20px;
+    }
+
+    .section-copy p,
+    .eel03-copy p,
+    .bottom-copy p {
+        font-size: 11px;
+        line-height: 1.88;
+    }
+
+    .image-grid-2 {
+        grid-template-columns: 1fr;
+        gap: 16px;
+    }
+
+    .point01-grid {
+        margin-top: 34px;
+    }
+
+    .aerial-card {
+        margin-top: 34px;
+    }
+
+    .cert-grid {
+        margin-top: 12px;
+    }
+
+    .point02-badge {
+        display: none;
+    }
+
+    .eel03 {
+        padding-top: 56px;
+    }
+
+    .eel03-top {
+        max-width: 100%;
+        min-height: auto;
+    }
+
+    .eel03-copy-wrap {
+        max-width: 100%;
+    }
+
+    .eel03-title {
+        margin-bottom: 18px;
+    }
+
+    .eel03-copy {
+        max-width: 100%;
+    }
+
+    .eel03-image-wrap {
+        position: static;
+        width: 160px;
+        margin: 18px auto 0;
+    }
+
+    .eel03-img {
+        max-width: 160px;
+    }
+
+    .tank-card {
+        margin-top: 24px;
+    }
+
+    .bottom-copy {
+        max-width: 100%;
+        margin-top: 40px;
+    }
+}
+
+@media (max-width: 480px) {
+    :root {
+            --hero-height: 390px;
+            --section-space: 54px;
+            --side-space: 10px;
+        }
+    
+        .hero-title {
+            font-size: 19px;
+        }
+    
+        .hero-desc {
+            font-size: 10px;
+            line-height: 1.68;
+        }
+    
+        .point-label,
+        .eel03-point {
+            font-size: 9px;
+        }
+    
+        .section-title,
+        .eel03-title {
+            font-size: 18px;
+        }
+    
+        .section-copy p,
+        .eel03-copy p,
+        .bottom-copy p {
+            font-size: 10px;
+            line-height: 1.84;
+        }
+    
+        .eel03-image-wrap {
+            width: 140px;
+        }
+    
+        .eel03-img {
+            max-width: 140px;
+        }
+
+    :root {
+            --hero-height: 360px;
+            --section-space: 48px;
+            --side-space: 10px;
+        }
+    
+        .hero-inner {
+            padding-top: 16px;
+        }
+    
+        .hero-title {
+            font-size: 17px;
+        }
+    
+        .hero-eyebrow {
+            font-size: 8px;
+        }
+    
+        .hero-desc {
+            font-size: 9.5px;
+        }
+    
+        .section-title,
+        .eel03-title {
+            font-size: 17px;
+        }
+    
+        .section-copy p,
+        .eel03-copy p,
+        .bottom-copy p {
+            font-size: 10px;
+        }
+    
+        .image-grid-2 {
+            gap: 10px;
+        }
+    
+        .eel03-image-wrap {
+            width: 120px;
+        }
+    
+        .eel03-img {
+            max-width: 120px;
+        }
+}
+
+/* 375px 이하 초소형 */
+@media (max-width: 375px) {
+    :root {
+        --hero-height: 320px;
+    }
+
+    .hero-title {
+        font-size: 15px;
+    }
+}

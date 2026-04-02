@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>고객후기 | 품장</title>
+
+  <!-- ✅ SEO -->
+  <meta name="description"
+    content="품장 고객후기 페이지입니다. 무항생제 자포니카 민물장어를 직접 키우고 구워 제공하는 품장의 실제 방문 후기를 별점순·최신순으로 확인하세요. (나주장어/인천장어구이)" />
+  <meta name="robots" content="index,follow,max-image-preview:large,max-snippet:-1,max-video-preview:-1" />
+  <link rel="canonical" href="https://pumjang.com/review.html" />
+  <meta name="keywords" content="나주맛집,나주장어,광주장어맛집,인천장어맛집,인천장어구이,을왕리 맛집,영종도 맛집,인천근교맛집,을왕리해수욕장맛집,왕산해수욕장맛집" />
+
+  <!-- ✅ Open Graph -->
+  <meta property="og:type" content="website" />
+  <meta property="og:locale" content="ko_KR" />
+  <meta property="og:site_name" content="품장" />
+  <meta property="og:title" content="고객후기 | 품장" />
+  <meta property="og:description" content="무항생제 자포니카 민물장어를 직접 키우고 구워 제공하는 품장. 실제 고객후기를 별점순·최신순으로 확인하세요." />
+  <meta property="og:url" content="https://pumjang.com/review.html" />
+  <meta property="og:image" content="https://pumjang.com/image/og/review-og.jpg" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+
+  <!-- ✅ Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="고객후기 | 품장" />
+  <meta name="twitter:description" content="품장 고객후기: 별점순·최신순으로 실제 방문 후기를 확인하세요." />
+  <meta name="twitter:image" content="https://pumjang.com/image/og/review-og.jpg" />
+
+  <link rel="icon" href="assets/img/shared/favicon-32x32.ico" />
+
+  <!-- ✅ fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Pretendard:wght@300;400;500;600;700;800&display=swap"
+    rel="stylesheet">
+
+  <!-- ✅ css -->
+  <link rel="stylesheet" href="css/common.css" />
+  <link rel="stylesheet" href="css/footer.css" />
+  <link rel="stylesheet" href="css/review.css" />
+  <link rel="stylesheet" href="components/talktalk/talktalk.css" />
+</head>
+
+<body>
+  <div id="include-nav"></div>
+
+  <main>
+    <section class="page-top container">
+      <div class="kicker">Review</div>
+      <h1>고객후기</h1>
+
+      <!-- ✅ 상단 검색 + 정렬 -->
+      <div class="review-controls" role="search" aria-label="고객후기 검색 및 정렬">
+        <div class="search-box">
+          <input id="searchInput" type="text" placeholder="검색어를 입력하세요" aria-label="고객후기 검색어 입력" />
+          <span class="search-icon" aria-hidden="true"></span>
+        </div>
+
+        <fieldset class="sort" aria-label="정렬 방식 선택">
+          <label class="sort-item">
+            <input type="radio" name="sort" value="rating" checked />
+            <span>별점순</span>
+          </label>
+          <label class="sort-item">
+            <input type="radio" name="sort" value="recent" />
+            <span>최신순</span>
+          </label>
+        </fieldset>
+      </div>
+
+      <!-- ✅ 뷰 토글 -->
+      <div class="view-toggle" aria-label="리뷰 보기 방식 선택">
+        <button id="btnGrid" class="view-btn is-active" type="button">
+          <img class="ico-img"
+            src="data:image/svg+xml;utf8,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20width%3D%2218%22%20height%3D%2218%22%20viewBox%3D%220%200%2024%2024%22%20fill%3D%22none%22%20stroke%3D%22%231f2a44%22%20stroke-width%3D%222%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%3E%3Crect%20x%3D%223%22%20y%3D%223%22%20width%3D%227%22%20height%3D%227%22/%3E%3Crect%20x%3D%2214%22%20y%3D%223%22%20width%3D%227%22%20height%3D%227%22/%3E%3Crect%20x%3D%223%22%20y%3D%2214%22%20width%3D%227%22%20height%3D%227%22/%3E%3Crect%20x%3D%2214%22%20y%3D%2214%22%20width%3D%227%22%20height%3D%227%22/%3E%3C/svg%3E"
+            alt="" aria-hidden="true"> 갤러리형 리뷰
+        </button>
+        <button id="btnList" class="view-btn" type="button">
+          <img class="ico-img"
+            src="data:image/svg+xml;utf8,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20width%3D%2218%22%20height%3D%2218%22%20viewBox%3D%220%200%2024%2024%22%20fill%3D%22none%22%20stroke%3D%22%231f2a44%22%20stroke-width%3D%222%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%3E%3Cline%20x1%3D%228%22%20y1%3D%226%22%20x2%3D%2221%22%20y2%3D%226%22/%3E%3Cline%20x1%3D%228%22%20y1%3D%2212%22%20x2%3D%2221%22%20y2%3D%2212%22/%3E%3Cline%20x1%3D%228%22%20y1%3D%2218%22%20x2%3D%2221%22%20y2%3D%2218%22/%3E%3Ccircle%20cx%3D%224%22%20cy%3D%226%22%20r%3D%221%22/%3E%3Ccircle%20cx%3D%224%22%20cy%3D%2212%22%20r%3D%221%22/%3E%3Ccircle%20cx%3D%224%22%20cy%3D%2218%22%20r%3D%221%22/%3E%3C/svg%3E"
+            alt="" aria-hidden="true"> 목록형 리뷰
+        </button>
+      </div>
+
+      <!-- ✅ 갤러리형 -->
+      <div id="reviewGrid" class="review-grid" aria-label="갤러리형 리뷰 목록"></div>
+
+      <!-- ✅ 목록형 -->
+      <div id="reviewList" class="review-list" aria-label="목록형 리뷰 목록" style="display:none;"></div>
+
+      <div id="emptyState" class="empty" style="display:none;" role="status" aria-live="polite">검색 결과가 없습니다.</div>
+      <div class="pager" id="pager" aria-label="페이지네이션"></div>
+    </section>
+
+    <!-- ✅ 리뷰 상세 모달 (스샷 스타일) -->
+    <div id="reviewModal" class="modal" aria-hidden="true" role="dialog" aria-modal="true" aria-label="리뷰 상세 보기">
+      <div class="modal__backdrop" data-modal-close></div>
+
+      <div class="modal__panel" role="document" tabindex="-1">
+        <!-- X 버튼 1개만 -->
+        <button type="button" class="modal__close" aria-label="닫기" data-modal-close>
+          <span aria-hidden="true">×</span>
+        </button>
+
+        <div class="modal__layout">
+          <!-- 좌측: 이미지 -->
+          <div class="modal__left">
+            <img id="modalImg" class="modal__img" src="" alt="" loading="lazy">
+          </div>
+
+          <!-- 우측: 정보 -->
+          <div class="modal__right">
+            <div class="modal__head">
+              <img id="modalAvatar" class="modal__avatar" src="" alt="" loading="lazy">
+              <div class="modal__who">
+                <div id="modalAuthor" class="modal__name">익명</div>
+                <div class="modal__meta">
+                  <span id="modalSource" class="modal__pill"></span>
+                  <span id="modalDate" class="modal__date"></span>
+                </div>
+              </div>
+            </div>
+
+            <div class="modal__ratingRow">
+              <div id="modalStars" class="modal__stars" aria-label="별점"></div>
+              <div id="modalScore" class="modal__score" aria-label="별점 점수"></div>
+            </div>
+
+            <div id="modalText" class="modal__text"></div>
+
+            <button type="button" class="modal__confirm" data-modal-close>확인</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </main>
+
+  <div id="include-footer"></div>
+
+  <script src="components/talktalk/talktalk.js"></script>
+  <script src="js/common.js"></script>
+  <script src="js/review.js"></script>
+</body>
+
+</html>
